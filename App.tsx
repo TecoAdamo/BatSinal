@@ -1,9 +1,21 @@
-import Home from "./src/Screens/Home";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import SplashScreen from './src/Screens/SplashScreen'; // Importe o componente SplashScreen
+import Home from './src/Screens/Home';
 
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <Home />
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Splash">
+        <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
+export default App;
