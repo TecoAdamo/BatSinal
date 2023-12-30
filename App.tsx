@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from './src/Screens/SplashScreen'; // Importe o componente SplashScreen
 import Home from './src/Screens/Home';
+import Form from './src/Screens/Form';
 
 
 const Stack = createStackNavigator();
@@ -13,6 +14,7 @@ const App = () => {
       <Stack.Navigator initialRouteName="Splash">
         <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name="Form" component={Form} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

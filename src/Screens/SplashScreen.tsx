@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
-
 import { NavigationProp } from '@react-navigation/native';
 
 type Props = {
@@ -11,14 +10,15 @@ type Props = {
 const SplashScreen: React.FC<Props> = ({ navigation }) => {
     useEffect(() => {
         setTimeout(() => {
-            return navigation.navigate('Home');
+            navigation.navigate('Home', {});
+
         }, 2000);
     }, []);
 
     return (
         <View style={styles.container}>
             <Image
-                source={require('../../assets/icon1.png')} // Caminho da sua imagem
+                source={require('../../assets/icon1.png')}
                 style={styles.image}
                 resizeMode="cover"
             />
