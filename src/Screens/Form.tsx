@@ -2,6 +2,10 @@ import { StyleSheet, View, TouchableOpacity, Text, TextInput, Alert } from 'reac
 
 import { useState } from 'react';
 
+import InputName from '../Components/InputName';
+import InputContact from '../Components/InputContact';
+import InputDescription from '../Components/InputDescription';
+
 
 export default function Form() {
 
@@ -25,34 +29,20 @@ export default function Form() {
 
     return (
         <View style={styles.container}>
-            <View style={styles.boxName}>
-                <Text style={styles.labelName}>Nome</Text>
-                <TextInput
-                    style={styles.boxTextInput}
-                    placeholder=' Insira seu nome: '
-                    value={name}
-                    onChangeText={(text) => setName(text)}
-                />
-            </View>
-            <View style={styles.boxContact}>
-                <Text style={styles.labelContact}>Contact</Text>
-                <TextInput
-                    style={styles.boxTextInputContact}
-                    placeholder=' Insira seu contato: '
-                    value={contact}
-                    onChangeText={(text) => setContact(text)}
-                />
-            </View>
-            <View style={styles.boxDescription}>
-                <Text style={styles.labelDescription}>Descrição</Text>
-                <TextInput
-                    style={styles.boxTextInputDescription}
-                    placeholder='Descreva o caso: '
-                    value={description}
-                    onChangeText={(text) => setDescription(text)}
-                    multiline={true}
-                />
-            </View>
+
+            <InputName
+                value={name}
+                onChangeText={(text: string | undefined) => setName(text)}
+            />
+            <InputContact
+                value={contact}
+                onChangeText={(text: string | undefined) => setContact(text)}
+            />
+            <InputDescription
+                value={description}
+                onChangeText={(text: string | undefined) => setDescription(text)}
+            />
+
             <TouchableOpacity
                 style={styles.btnSend}
                 onPress={cleanData}
@@ -70,73 +60,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
-    boxName: {
-        width: '80%',
-        height: '14%',
-        paddingLeft: 15,
-        bottom: '14%',
-    },
-
-    labelName: {
-        fontWeight: 'bold',
-        paddingTop: 10,
-        paddingBottom: 10,
-    },
-
-    boxTextInput: {
-        borderWidth: 1.5,
-        padding: 5,
-        borderRadius: 14,
-        width: '96%',
-    },
-    /////////////////////////////
-    boxContact: {
-        width: '80%',
-        height: '14%',
-        paddingLeft: 15,
-        bottom: '14%',
-
-    },
-
-    labelContact: {
-        fontWeight: 'bold',
-        paddingTop: 10,
-        paddingBottom: 10,
-    },
-
-    boxTextInputContact: {
-        borderWidth: 1.5,
-        padding: 5,
-        borderRadius: 14,
-        width: '96%',
-    },
-    /////////////////////////////
-    boxDescription: {
-        width: '80%',
-        height: '20%',
-        paddingLeft: 15,
-        bottom: '14%',
-
-    },
-
-    labelDescription: {
-        fontWeight: 'bold',
-        paddingTop: 10,
-        paddingBottom: 10,
-    },
-
-    boxTextInputDescription: {
-        borderWidth: 1.5,
-        padding: 5,
-        borderRadius: 14,
-        paddingTop: 12,
-        width: '96%',
-        height: 100,
-        textAlignVertical: 'top',
-
-    },
-    //////////////////////////////
     btnSend: {
         backgroundColor: 'black',
         padding: 12,
