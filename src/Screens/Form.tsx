@@ -1,32 +1,62 @@
-import { StyleSheet, View, TouchableOpacity, Text, TextInput } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, TextInput, Alert } from 'react-native';
 
+import { useState } from 'react';
 
 
 export default function Form() {
 
+    const [name, setName] = useState<string>()
+    const [contact, setContact] = useState<string>()
+    const [description, setDescription] = useState<string>()
+
+    const cleanData = () => {
+        if (description && !name && !contact) {
+            Alert.alert('Preencha os outros campos ou limpe a descrição.');
+        } else if (!description || !name || !contact) {
+            Alert.alert('Preencha todos os campos para continuar.');
+        } else {
+            Alert.alert('Dados enviados com sucesso.');
+            setName('')
+            setContact('')
+            setDescription('')
+        }
+    };
+
 
     return (
         <View style={styles.container}>
-
             <View style={styles.boxName}>
                 <Text style={styles.labelName}>Nome</Text>
-                <TextInput style={styles.boxTextInput}
+                <TextInput
+                    style={styles.boxTextInput}
                     placeholder=' Insira seu nome: '
+                    value={name}
+                    onChangeText={(text) => setName(text)}
                 />
             </View>
             <View style={styles.boxContact}>
                 <Text style={styles.labelContact}>Contact</Text>
-                <TextInput style={styles.boxTextInputContact}
-                    placeholder=' Insira seu nome: '
+                <TextInput
+                    style={styles.boxTextInputContact}
+                    placeholder=' Insira seu contato: '
+                    value={contact}
+                    onChangeText={(text) => setContact(text)}
                 />
             </View>
             <View style={styles.boxDescription}>
                 <Text style={styles.labelDescription}>Descrição</Text>
-                <TextInput style={styles.boxTextInputDescription}
+                <TextInput
+                    style={styles.boxTextInputDescription}
                     placeholder='Descreva o caso: '
+                    value={description}
+                    onChangeText={(text) => setDescription(text)}
+                    multiline={true}
                 />
             </View>
-            <TouchableOpacity style={styles.btnSend}>
+            <TouchableOpacity
+                style={styles.btnSend}
+                onPress={cleanData}
+            >
                 <Text style={styles.BtnText}>Enviar</Text>
             </TouchableOpacity>
 
